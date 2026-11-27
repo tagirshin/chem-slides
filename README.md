@@ -16,7 +16,7 @@ npx skills add tagirshin/chem-slides --skill chem-slides
 
 Choose Codex, Claude Code, or both when prompted. The [Vercel skills CLI](https://github.com/vercel-labs/skills) requires Node.js 22.20 or later. The bundled renderer runs on Node.js 20 or later.
 
-For offline installation, unpack the ZIP from [GitHub Releases](https://github.com/tagirshin/chem-slides/releases/latest), then run this from the unpacked folder:
+For offline installation, download **Source code (zip)** from [GitHub Releases](https://github.com/tagirshin/chem-slides/releases/latest), then run this from the unpacked folder:
 
 ```sh
 node install.mjs both
