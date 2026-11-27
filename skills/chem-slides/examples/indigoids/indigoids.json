@@ -1,0 +1,29 @@
+{
+  "title": "From indigo to Tyrian purple",
+  "pigments": [
+    {
+      "name": "Indigo",
+      "formula": "C₁₆H₁₀N₂O₂",
+      "smiles": "O=C1/[C:101](=[C:102]2\\NC3=CC=CC=C3C2=O)NC2=CC=CC=C21",
+      "highlight": [],
+      "ink": "#344885",
+      "swatch": ["#18264F", "#3C57A0", "#273A75"]
+    },
+    {
+      "name": "6-Bromoindigo",
+      "formula": "C₁₆H₉BrN₂O₂",
+      "smiles": "O=C1/[C:101](=[C:102]2\\NC3=CC([Br:106])=CC=C3C2=O)NC2=CC=CC=C21",
+      "highlight": [106],
+      "ink": "#654887",
+      "swatch": ["#342350", "#735595", "#51396E"]
+    },
+    {
+      "name": "Tyrian purple",
+      "formula": "C₁₆H₈Br₂N₂O₂",
+      "smiles": "O=C1/[C:101](=[C:102]2\\NC3=CC([Br:106])=CC=C3C2=O)NC2=CC([Br:206])=CC=C21",
+      "highlight": [106, 206],
+      "ink": "#8D3F67",
+      "swatch": ["#4E1E3C", "#9B5079", "#702B52"]
+    }
+  ]
+}

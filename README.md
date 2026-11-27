@@ -2,7 +2,9 @@
 
 Chem Slides is an offline Agent Skill for Codex and Claude Code. It uses the Reymond group's SmilesDrawer to render chemical structures from SMILES and compose editable SVG figures for articles and presentations.
 
-![SynthEx panel d rebuilt with Chem Slides](skills/chem-slides/examples/synthex/panel-d.png)
+![Three aligned indigo dye structures with highlighted bromines and woven color swatches](skills/chem-slides/examples/indigoids/indigoids.png)
+
+[Editable indigoids SVG](skills/chem-slides/examples/indigoids/indigoids.svg) · [Azobenzene photoswitch slide](skills/chem-slides/examples/photoswitch/photoswitch.png)
 
 ## Install
 
@@ -34,7 +36,12 @@ node skills/chem-slides/scripts/chem-slides.mjs figure \
 node skills/chem-slides/examples/synthex/draw-panel.mjs > panel-d.svg
 ```
 
-The examples include [paper](skills/chem-slides/examples/paper.svg), [slide](skills/chem-slides/examples/slide.svg), and [dark](skills/chem-slides/examples/dark.svg) versions of a comparison. The [SynthEx example](skills/chem-slides/examples/synthex/README.md) adds bond and ring highlights with a validated editable overlay. See the [figure specification](skills/chem-slides/references/format.md) for styling and layout options.
+## Examples
+
+- [From indigo to Tyrian purple](skills/chem-slides/examples/indigoids/README.md) aligns a shared scaffold and highlights bromine substitutions in an editorial figure.
+- [Azobenzene photoswitch](skills/chem-slides/examples/photoswitch/README.md) illustrates reversible isomerization in a 16:9 presentation slide.
+- The [SynthEx panel](skills/chem-slides/examples/synthex/README.md) adds bond and ring highlights with a validated editable overlay.
+- The same comparison renders in [paper](skills/chem-slides/examples/paper.svg), [slide](skills/chem-slides/examples/slide.svg), and [dark](skills/chem-slides/examples/dark.svg) themes using the [figure specification](skills/chem-slides/references/format.md).
 
 ## Development
 

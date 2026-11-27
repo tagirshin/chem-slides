@@ -17,6 +17,8 @@ Save a JSON object with `molecules` and any of the following options.
 
 All structures in a figure use one scale. Bare molecule SVGs have transparent backgrounds. Figure SVGs use the selected theme's background and panels.
 
+Set `structure.alignBond` to `{"from":101,"to":102,"angle":0}` to orient a conserved bond across the figure. Both numbers must be unique atom maps in every molecule and must identify bonded atoms. Angles are clockwise in SVG coordinates and default to 0° (left to right). See the [indigoids example](../examples/indigoids/README.md) for centering each structure on the same mapped bond.
+
 For multilingual labels, ensure the chosen viewer has a font with those glyphs. If long labels fail to fit, use fewer columns, enlarge the figure, or shorten the text.
 
 ## Editing and export

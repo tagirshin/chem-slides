@@ -67,6 +67,16 @@ test('layout indices identify input atoms and bonds even when drawing adds stere
   assert.throws(() => renderMolecule({ smiles, structure: { explicitHydrogens: 'no' } }), /boolean/);
 });
 
+test('a directed atom-mapped bond aligns the structure before SVG labels are drawn', () => {
+  const structure = { alignBond: { from: 1, to: 2, angle: -90 } };
+  const { layout } = renderMolecule({ smiles: '[CH3:1][CH2:2]O', structure, includeLayout: true });
+  const [start, end] = layout.atoms;
+  assert.ok(Math.abs(start.x - end.x) < 1e-6);
+  assert.ok(end.y < start.y);
+  assert.throws(() => renderMolecule({ smiles: '[CH3:1]C[OH:2]', structure }), /must share a bond/);
+  assert.throws(() => renderMolecule({ smiles: '[CH3:1]CO', structure }), /exactly one atom/);
+});
+
 test('figure uses distinct, resolvable SVG references and a uniform molecule scale', () => {
   const source = figureSvg(slide);
   assert.equal(source, figureSvg(slide));

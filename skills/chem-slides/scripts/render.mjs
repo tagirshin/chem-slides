@@ -182,9 +182,32 @@ function drawingLayout(graph) {
   return { atoms, bonds };
 }
 
+function orientBond(preprocessor, { from, to, angle }) {
+  const rotateDrawing = preprocessor.rotateDrawing.bind(preprocessor);
+  preprocessor.rotateDrawing = () => {
+    rotateDrawing();
+    const { vertices, edges } = preprocessor.graph;
+    const start = vertices.find(vertex => vertex.value.class === from);
+    const end = vertices.find(vertex => vertex.value.class === to);
+    const connected = start && end && edges.some(edge => edge.bondType !== '.' && (
+      (edge.sourceId === start.id && edge.targetId === end.id) ||
+      (edge.sourceId === end.id && edge.targetId === start.id)
+    ));
+    if (!connected) throw new Error(`Cannot align :${from} and :${to}. They must share a bond.`);
+
+    const origin = start.position;
+    const current = Math.atan2(end.position.y - origin.y, end.position.x - origin.x);
+    const delta = angle * Math.PI / 180 - current;
+    for (const vertex of vertices) {
+      if (vertex !== start) vertex.position.rotateAround(delta, origin);
+    }
+    for (const ring of preprocessor.rings) ring.center.rotateAround(delta, origin);
+  };
+}
+
 export function renderMolecule({ smiles, theme: themeName, structure = {}, highlight = [], id, includeLayout = false }) {
   const theme = getTheme(themeName);
-  plainObject(structure, ['bondThickness', 'fontSize', 'colors', 'highlightColor', 'explicitHydrogens'], 'structure');
+  plainObject(structure, ['bondThickness', 'fontSize', 'colors', 'highlightColor', 'explicitHydrogens', 'alignBond'], 'structure');
   const bondThickness = boundedNumber(structure.bondThickness ?? 1.25, 0.5, 4, 'bondThickness');
   const fontSize = boundedNumber(structure.fontSize ?? 10, 7, 15, 'fontSize');
   const explicitHydrogens = structure.explicitHydrogens ?? true;
@@ -192,6 +215,17 @@ export function renderMolecule({ smiles, theme: themeName, structure = {}, highl
   const palette = paletteFor(theme, structure.colors);
   const color = hexColor(structure.highlightColor ?? theme.highlight, 'highlightColor');
   const { tree, maps } = parseMolecule(smiles);
+  let alignment;
+  if (structure.alignBond !== undefined) {
+    plainObject(structure.alignBond, ['from', 'to', 'angle'], 'alignBond');
+    const { from, to, angle = 0 } = structure.alignBond;
+    for (const map of [from, to]) {
+      boundedNumber(map, 0, Number.MAX_SAFE_INTEGER, 'Alignment atom-map number', true);
+      if (maps.get(map) !== 1) throw new Error(`Alignment requires exactly one atom with map :${map} in the SMILES.`);
+    }
+    boundedNumber(angle, -360, 360, 'Alignment angle');
+    alignment = { from, to, angle };
+  }
   if (!Array.isArray(highlight)) throw new Error('highlight must be an array of SMILES atom-map numbers.');
   const highlights = [...new Set(highlight)].map(map => {
     boundedNumber(map, 0, Number.MAX_SAFE_INTEGER, 'Atom-map number', true);
@@ -202,6 +236,7 @@ export function renderMolecule({ smiles, theme: themeName, structure = {}, highl
   });
   const optionsForId = [smiles, bondThickness, fontSize, palette, highlights];
   if (!explicitHydrogens) optionsForId.push(explicitHydrogens);
+  if (alignment) optionsForId.push(alignment);
   const fingerprint = JSON.stringify(optionsForId);
   const suffix = createHash('sha256').update(fingerprint).digest('hex').slice(0, 12);
   const prefix = id ?? `mol-${suffix}`;
@@ -215,6 +250,7 @@ export function renderMolecule({ smiles, theme: themeName, structure = {}, highl
     fontSizeSmall: fontSize * 0.45, compactDrawing: false, isomeric: true, explicitHydrogens,
     themes: { figure: palette },
   });
+  if (alignment) orientBond(drawer.preprocessor, alignment);
 
   const oldDocument = globalThis.document;
   const oldSvgClass = globalThis.SVGSVGElement;

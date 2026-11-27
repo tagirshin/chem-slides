@@ -26,3 +26,5 @@ For atom highlights, select an existing atom map in the SMILES or add one using 
 For custom layouts, render individual SVGs with distinct `--id` values. Place each whole molecule into the target SVG or slide using translation and uniform scaling. Add arrows, labels, callouts and background around the molecule. If embedding into a larger SVG, keep the fragment's masks and other definitions with it. Use the asset's `viewBox` and `data-bond-length` to achieve a common scale. Change the SMILES and rerender when the chemical structure needs an edit.
 
 For a route panel with bond and ring highlights, see the [SynthEx example](examples/synthex/README.md). Its script uses the renderer's projected atom coordinates, validates bond paths against the graph, and places the highlights and molecule in the same SVG transform.
+
+For direct comparisons, orient a shared bond with atom maps as in the [indigoids figure](examples/indigoids/README.md). For a presentation slide that explains a change between two structures, see the [azobenzene example](examples/photoswitch/README.md).
