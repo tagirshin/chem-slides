@@ -1,0 +1,36 @@
+{
+  "theme": "dark",
+  "width": 1600,
+  "height": 900,
+  "title": "From benzoic acid to aspirin",
+  "subtitle": "Three related structures with the same aromatic scaffold",
+  "note": "Highlight marks the phenolic oxygen and its counterpart in aspirin.",
+  "columns": 3,
+  "structure": {
+    "bondThickness": 1.35,
+    "fontSize": 10
+  },
+  "molecules": [
+    {
+      "smiles": "O=C(O)c1ccccc1",
+      "label": "Benzoic acid",
+      "caption": "Carboxyl group"
+    },
+    {
+      "smiles": "O=C(O)c1ccccc1[OH:1]",
+      "label": "Salicylic acid",
+      "caption": "Adjacent hydroxyl group",
+      "highlight": [
+        1
+      ]
+    },
+    {
+      "smiles": "O=C(O)c1ccccc1[O:1]C(C)=O",
+      "label": "Aspirin",
+      "caption": "Acetylated hydroxyl group",
+      "highlight": [
+        1
+      ]
+    }
+  ]
+}
