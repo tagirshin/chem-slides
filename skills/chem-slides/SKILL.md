@@ -1,6 +1,7 @@
 ---
 name: chem-slides
 description: Render chemical structures from supplied SMILES with offline SmilesDrawer and make editable SVG figures for papers and slides. Use for molecular drawings, atom-map highlighting, scaffold and fragment comparisons, and chemistry workflows such as graph encoders, property prediction, or virtual library enumeration.
+license: MIT
 compatibility: Node.js 20 or later. JavaScript dependencies are bundled. Rendering uses local files and runs offline.
 ---
 
@@ -30,3 +31,5 @@ For a route panel with bond and ring highlights, see the [SynthEx example](examp
 For direct comparisons, orient a shared bond with atom maps as in the [indigoids figure](examples/indigoids/README.md). For a presentation slide that explains a change between two structures, see the [azobenzene example](examples/photoswitch/README.md).
 
 For a workflow, place each rendered molecule in the step where it appears and add arrows and process labels in the parent SVG. The [molecular encoder example](examples/molecular-encoder/README.md) projects the same atom coordinates into a graph beside the structure. The [scaffold library example](examples/scaffold-library/README.md) uses alignment and separate bond overlays to make the changing fragments easy to track. Label illustrative model outputs and virtual candidates as such.
+
+See the [MIT license](LICENSE), [third-party notices](scripts/third-party-licenses.txt), and [SynthEx attribution](examples/synthex/README.md).
