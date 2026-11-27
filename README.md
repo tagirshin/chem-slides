@@ -2,9 +2,9 @@
 
 Chem Slides is an offline Agent Skill for Codex and Claude Code. It uses the Reymond group's SmilesDrawer to render chemical structures from SMILES and compose editable SVG figures for articles and presentations.
 
-![Three aligned indigo dye structures with highlighted bromines and woven color swatches](skills/chem-slides/examples/indigoids/indigoids.png)
+![Cheminformatics workflow from a molecule through a graph encoder to a property prediction](skills/chem-slides/examples/molecular-encoder/molecular-encoder.png)
 
-[Editable indigoids SVG](skills/chem-slides/examples/indigoids/indigoids.svg) · [Azobenzene photoswitch slide](skills/chem-slides/examples/photoswitch/photoswitch.png)
+[Editable molecular encoder SVG](skills/chem-slides/examples/molecular-encoder/molecular-encoder.svg) · [Scaffold enumeration slide](skills/chem-slides/examples/scaffold-library/scaffold-library.png)
 
 ## Install
 
@@ -33,11 +33,13 @@ node skills/chem-slides/scripts/chem-slides.mjs render 'CC[OH:2]' \
 node skills/chem-slides/scripts/chem-slides.mjs figure \
   skills/chem-slides/examples/slide.json -o comparison.svg
 
-node skills/chem-slides/examples/synthex/draw-panel.mjs > panel-d.svg
+node skills/chem-slides/examples/molecular-encoder/draw.mjs > workflow.svg
 ```
 
 ## Examples
 
+- [From molecule to prediction](skills/chem-slides/examples/molecular-encoder/README.md) follows a molecule through a graph, a message-passing encoder, and a property readout.
+- [One scaffold, four candidates](skills/chem-slides/examples/scaffold-library/README.md) shows how two attachment sites and two fragment choices per site define a virtual library.
 - [From indigo to Tyrian purple](skills/chem-slides/examples/indigoids/README.md) aligns a shared scaffold and highlights bromine substitutions in an editorial figure.
 - [Azobenzene photoswitch](skills/chem-slides/examples/photoswitch/README.md) illustrates reversible isomerization in a 16:9 presentation slide.
 - The [SynthEx panel](skills/chem-slides/examples/synthex/README.md) adds bond and ring highlights with a validated editable overlay.
